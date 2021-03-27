@@ -12,6 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.white,
+        fontFamily: 'happymonkey',
+      ),
       initialRoute: '/',
       defaultTransition: Transition.native,
       locale: Locale('pt', 'BR'),
@@ -35,7 +40,6 @@ class MyApp extends StatelessWidget {
             ResponsiveBreakpoint.autoScale(700, name: TABLET),
             ResponsiveBreakpoint.resize(800, name: DESKTOP),
           ]),
-      home: Container(),
     );
   }
 }
