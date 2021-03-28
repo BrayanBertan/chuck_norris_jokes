@@ -1,5 +1,6 @@
 import 'package:chuck_norris_jokes/controllers/MyHomePageController.dart';
-import 'package:chuck_norris_jokes/views/home/widgets/categories_dropdown.dart';
+import 'package:chuck_norris_jokes/views/home/widgets/categories_list_tile.dart';
+import 'package:chuck_norris_jokes/views/home/widgets/joke_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,36 +15,36 @@ class HomePage extends StatelessWidget {
             Tab(
               icon: Image.asset('assets/images/icon.png'),
             ),
-            Text('Chuck Norris Jokes',style: TextStyle(
-              fontSize: 30,
-              color: Colors.deepOrangeAccent,
-            ),)
+            Text(
+              'Chuck Norris Jokes',
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.deepOrangeAccent,
+              ),
+            )
           ],
         ),
       ),
       body: Align(
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 1000),
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ListTile(
-                  leading: Text(
-                    'Category:',
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.deepOrangeAccent,
+            child: Obx(() => Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 15,
                     ),
-                  ),
-                  title: CategoriesDropDown(),
-                  trailing: Tab(
-                    icon: Image.asset('assets/images/icon.png'),
-                  ),
-                )
-              ],
-            ),
+                    CategoriesListTile(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    controller.loading.value
+                        ? LinearProgressIndicator()
+                        : JokeCard()
+                  ],
+                )),
           ),
         ),
       ),

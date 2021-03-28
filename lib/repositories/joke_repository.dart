@@ -7,7 +7,8 @@ class JokeRepository {
 
   Future<Joke> getRandomJoke({String category = ''}) async {
     String endpoint = 'https://api.chucknorris.io/jokes/random';
-    if (category.trim().isNotEmpty) endpoint += '?category=$category';
+    if (category.trim().isNotEmpty && category != 'all')
+      endpoint += '?category=$category';
     try {
       final response = await Dio().get(endpoint);
       return Joke.fromJson(response.data);
