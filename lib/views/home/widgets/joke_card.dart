@@ -33,17 +33,12 @@ class JokeCard extends StatelessWidget {
               ],
             ),
           ),
-          Obx(() => ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: 1000,
-                  minWidth: 1000,
-                  maxHeight: 600,
-                ),
-                child: Image.asset(
-                  'assets/images/${controller.image.value}',
-                  fit: BoxFit.cover,
-                ),
-              )),
+          Obx(
+            () => Image.asset(
+              'assets/images/${controller.image.value}',
+              fit: BoxFit.fill,
+            ),
+          ),
         ],
       ),
     );
